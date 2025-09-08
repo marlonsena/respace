@@ -1,0 +1,5 @@
+{
+  "name": "re:space",
+  "description": "An interactive application that allows users to re-imagine their physical spaces by editing 360° photos with natural language prompts, powered by the Gemini API.",
+  "requestFramePermissions": []
+}
