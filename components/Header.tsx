@@ -105,7 +105,7 @@ const Header: React.FC<HeaderProps> = ({ onReset, showReset }) => {
                 
                 {/* Content */}
                 <div className="flex items-center relative z-10">
-                    <img src="/respace.png" alt="re:space" className="h-10 w-auto filter drop-shadow-lg" />
+                    <img src={`${import.meta.env.BASE_URL}respace.png`} alt="re:space" className="h-10 w-auto filter drop-shadow-lg" />
                 </div>
                 
                 <div className="flex items-center gap-3 relative z-10">
