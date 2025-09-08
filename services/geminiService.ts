@@ -2,11 +2,29 @@
 import { GoogleGenAI, Modality, Type } from "@google/genai";
 import { GeminiEditResponse } from './types';
 
-if (!process.env.API_KEY) {
-    throw new Error("API_KEY environment variable not set.");
-}
+// Function to get API key from localStorage or environment
+const getApiKey = (): string => {
+    // Check if we're in a browser environment
+    if (typeof window !== 'undefined') {
+        const userApiKey = localStorage.getItem('gemini-api-key');
+        if (userApiKey) {
+            return userApiKey;
+        }
+    }
+    
+    // Fallback to environment variable
+    if (!process.env.API_KEY) {
+        throw new Error("No API key found. Please set your Gemini API key using the BYOK button or set the API_KEY environment variable.");
+    }
+    
+    return process.env.API_KEY;
+};
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Function to create GoogleGenAI instance with current API key
+const createAIInstance = () => {
+    const apiKey = getApiKey();
+    return new GoogleGenAI({ apiKey });
+};
 
 const base64ToGenerativePart = (base64Data: string, mimeType: string) => {
     return {
@@ -19,6 +37,7 @@ const base64ToGenerativePart = (base64Data: string, mimeType: string) => {
 
 export const editImageWithGemini = async (base64Image: string, mimeType: string, prompt: string): Promise<GeminiEditResponse> => {
     try {
+        const ai = createAIInstance();
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash-image-preview',
             contents: {
@@ -65,6 +84,7 @@ export const editImageWithGemini = async (base64Image: string, mimeType: string,
 
 export const generateContextualPrompts = async (base64Image: string, mimeType: string): Promise<string[]> => {
     try {
+         const ai = createAIInstance();
          const response = await ai.models.generateContent({
             model: "gemini-2.5-flash",
             contents: {
