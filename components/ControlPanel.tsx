@@ -32,19 +32,21 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
     onToggleMinimize,
 }) => {
     return (
-        <div className="w-full max-w-4xl bg-black/40 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 overflow-hidden transition-all duration-300 ease-in-out">
+        <div className="w-full max-w-4xl bg-gradient-to-r from-indigo-900/30 via-purple-900/20 to-blue-900/30 backdrop-blur-xl rounded-2xl shadow-2xl border border-indigo-400/30 overflow-hidden transition-all duration-300 ease-in-out relative">
+            {/* Glassmorphism overlay */}
+            <div className="absolute inset-0 bg-white/5 backdrop-blur-xl rounded-2xl"></div>
             {/* Header / Toggle Area */}
-            <div className="flex items-center justify-between p-2 cursor-pointer" onClick={onToggleMinimize} aria-expanded={!isMinimized} aria-controls="control-panel-content">
-                <h3 className="text-sm font-semibold text-slate-300 pl-2">Design Studio</h3>
-                <button className="p-2 rounded-full hover:bg-white/10 transition-colors" aria-label={isMinimized ? 'Expand controls' : 'Collapse controls'}>
-                    <ChevronDownIcon className={`w-5 h-5 text-slate-400 transition-transform duration-300 ${isMinimized ? 'rotate-180' : 'rotate-0'}`} />
+            <div className="flex items-center justify-between p-2 cursor-pointer relative z-10" onClick={onToggleMinimize} aria-expanded={!isMinimized} aria-controls="control-panel-content">
+                <h3 className="text-sm font-semibold text-indigo-200 pl-2">Design Studio</h3>
+                <button className="p-2 rounded-full hover:bg-indigo-500/20 transition-colors" aria-label={isMinimized ? 'Expand controls' : 'Collapse controls'}>
+                    <ChevronDownIcon className={`w-5 h-5 text-indigo-300 transition-transform duration-300 ${isMinimized ? 'rotate-180' : 'rotate-0'}`} />
                 </button>
             </div>
 
             {/* Collapsible Content */}
             <div
                 id="control-panel-content"
-                className={`transition-[max-height,opacity] duration-500 ease-in-out overflow-hidden ${isMinimized ? 'max-h-0 opacity-0' : 'max-h-96 opacity-100'}`}
+                className={`transition-[max-height,opacity] duration-500 ease-in-out overflow-hidden relative z-10 ${isMinimized ? 'max-h-0 opacity-0' : 'max-h-96 opacity-100'}`}
             >
                 <div className="p-4 pt-0">
                     <div className="flex flex-col md:flex-row gap-4">

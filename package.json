@@ -9,10 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@google/genai": "^1.17.0",
+    "@playwright/test": "^1.55.0",
+    "photo-sphere-viewer": "^4.8.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "@google/genai": "^1.17.0",
-    "photo-sphere-viewer": "^4.8.1",
     "three": "0.158.0"
   },
   "devDependencies": {
