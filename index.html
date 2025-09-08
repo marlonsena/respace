@@ -84,6 +84,21 @@
     .btn-reimagine:not(:disabled):hover::before {
         left: 100%;
     }
+
+    /* Hide Photo Sphere Viewer navbar completely */
+    .psv-navbar {
+        display: none !important;
+    }
+
+    /* Hide any other PSV UI elements that might appear as grey strips */
+    .psv-container .psv-navbar,
+    .psv-container .psv-navbar--open,
+    .psv-container .psv-navbar--closed {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        height: 0 !important;
+    }
 </style>
 </head>
 <body class="bg-slate-900 text-white bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-900/30 min-h-screen">
